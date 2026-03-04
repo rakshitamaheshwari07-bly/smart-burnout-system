@@ -5,7 +5,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 st.set_page_config(page_title="Smart Burnout System", layout="centered")
 
-# Custom Styling
+
 st.markdown("""
     <style>
     .stApp {
@@ -36,7 +36,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ----------- Load Dataset & Train Model -----------
+
 data = pd.read_csv("dataset.csv")
 
 le_mood = LabelEncoder()
@@ -51,11 +51,11 @@ y = data["burnout"]
 model = DecisionTreeClassifier()
 model.fit(X, y)
 
-# ----------- Page Control -----------
+
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
-# ----------- HOME PAGE -----------
+
 if st.session_state.page == "home":
 
     st.markdown('<div class="big-title">AI-Based Smart Study Break & Burnout Detection System</div>', unsafe_allow_html=True)
@@ -67,7 +67,7 @@ if st.session_state.page == "home":
     if st.button("Proceed to Assessment"):
         st.session_state.page = "form"
 
-# ----------- FORM PAGE -----------
+
 elif st.session_state.page == "form":
 
     st.header("Enter Your Study Details")
@@ -87,7 +87,7 @@ elif st.session_state.page == "form":
         st.session_state.burnout = burnout_level
         st.session_state.page = "result"
 
-# ----------- RESULT PAGE -----------
+
 elif st.session_state.page == "result":
 
     burnout_level = st.session_state.burnout
